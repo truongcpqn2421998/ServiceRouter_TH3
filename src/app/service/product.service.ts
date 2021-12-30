@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
 
 @Injectable({
@@ -31,11 +31,29 @@ export class ProductService {
     price: 1895000,
     description: 'Like new'
   }];
+
   getAll() {
     return this.products;
   }
+
+  findProductById(id: number) {
+    return this.products.find(item => item.id === id);
+  }
+
   saveProduct(product) {
     this.products.push(product);
   }
-  constructor() { }
+
+  updateById(product1, id) {
+    this.products.fill(product1, id, id);
+
+  }
+
+  deleteProduct(id) {
+    this.products.splice(id - 1, 1);
+  }
+
+  constructor() {
+  }
+
 }
