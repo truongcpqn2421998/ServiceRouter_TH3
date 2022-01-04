@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {Subscription} from 'rxjs';
 import {ProductService} from '../service/product.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-delete-product',
@@ -22,6 +22,7 @@ export class DeleteProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private activeRouter: ActivatedRoute,
+    private router: Router
   ) {
     this.sub = this.activeRouter.paramMap.subscribe(
       (paramMap: ParamMap) => {
@@ -41,6 +42,7 @@ export class DeleteProductComponent implements OnInit {
 
   deleteProduct() {
     this.productService.deleteProduct(this.product.id);
+    this.router.navigate(['product/list']);
   }
 
 }

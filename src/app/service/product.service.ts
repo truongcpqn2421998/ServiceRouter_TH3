@@ -50,7 +50,11 @@ export class ProductService {
   }
 
   deleteProduct(id) {
-    this.products.splice(id - 1, 1);
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].id === id) {
+        this.products.splice(i, 1);
+      }
+    }
   }
 
   constructor() {
